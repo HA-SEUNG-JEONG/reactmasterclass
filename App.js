@@ -1,4 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -6,20 +10,7 @@ const Wrapper = styled.div`
   width: 100vw;
   justify-content: center;
   align-items: center;
-`;
-
-const ani = keyframes`
-  0%{
-    transform:rotate(0deg);
-    border-radius:0px;
-  }
-  50%{
-    border-radius:100px;
-  }
-  100%{
-    transform:rotate(0deg);
-    border-radius:0px;
-  }
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const Emoji = styled.span`
@@ -32,20 +23,11 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${ani} 1s linear infinite;
-  //Box Component 내에 있는 element를 직접 targeting
-  ${Emoji} {
-    &:hover {
-      font-size: 48px;
-    }
-  }
 `;
 function App() {
   return (
     <Wrapper>
-      <Box>
-        <Emoji>😍</Emoji>
-      </Box>
+      <Box></Box>
     </Wrapper>
   );
 }
