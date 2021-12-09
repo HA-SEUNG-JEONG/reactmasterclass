@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 //createGlobalStyle을 이용하여 렌더링 작업시 해당 component는 전역 scope에 스타일 적용
 const GlobalStyle = createGlobalStyle`
@@ -74,6 +75,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
