@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 
@@ -63,18 +62,8 @@ const Img = styled.img`
 
 function Coins() {
   //useQuery : 첫번째 인자로 QueryKey, 두번째 인자로 fetcher function
+  //useQuery는 response를 캐싱하는 역할을 함.
   const { isLoading, data } = useQuery<CoinInterface[]>("allCoins", fetchCoins);
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await (
-  //       await fetch("http://api.coinpaprika.com/v1/coins")
-  //     ).json();
-  //     setCoins(response.slice(0, 101));
-  //     setLoading(false);
-  //   })();
-  // }, []);
   return (
     <Container>
       <Header>
@@ -92,7 +81,7 @@ function Coins() {
                 <Img
                   src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                 />
-                {(coin.name, coin.symbol)} &rarr;
+                {coin.name} &rarr;
               </Link>
             </Coin>
           ))}

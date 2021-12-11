@@ -8,7 +8,6 @@ import {
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
@@ -154,24 +153,8 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId)
   );
-  // const [loading, setLoading] = useState(true);
-  // const [info, setInfo] = useState<IInfoData>();
-  // const [priceInfo, setPriceInfo] = useState<IPriceData>();
-  // useEffect(() => {
-  //   (async () => {
-  //     const infoData = await (
-  //       await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-  //     ).json();
-  //     const priceData = await (
-  //       await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-  //     ).json();
-  //     setInfo(infoData);
-  //     setPriceInfo(priceData);
-  //     setLoading(false);
-  //   })();
-  // }, [coinId]);
-  const loading = infoLoading || tickersLoading;
 
+  const loading = infoLoading || tickersLoading;
   return (
     <Container>
       <Header>
@@ -223,7 +206,7 @@ function Coin() {
               <Price />
             </Route>
             <Route path={`/:coinId/chart`}>
-              <Chart />
+              <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>
